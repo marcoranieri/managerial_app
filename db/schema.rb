@@ -10,10 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_193912) do
+ActiveRecord::Schema.define(version: 2020_08_02_200731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "allergens", force: :cascade do |t|
+    t.string "name"
+    t.text "notes"
+    t.string "raw_icon"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.boolean "vegetarian"
+    t.boolean "gluten_free"
+    t.boolean "child"
+    t.boolean "foreign"
+    t.bigint "table_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["table_id"], name: "index_customers_on_table_id"
+  end
+
+  create_table "dish_allergens", force: :cascade do |t|
+    t.bigint "dish_id", null: false
+    t.bigint "allergen_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["allergen_id"], name: "index_dish_allergens_on_allergen_id"
+    t.index ["dish_id"], name: "index_dish_allergens_on_dish_id"
+  end
+
+  create_table "dishes", force: :cascade do |t|
+    t.string "name"
+    t.integer "price_cents"
+    t.boolean "vegetarian"
+    t.boolean "gluten_free"
+    t.string "category"
+    t.bigint "table_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["table_id"], name: "index_dishes_on_table_id"
+  end
+
+  create_table "tables", force: :cascade do |t|
+    t.string "table_number"
+    t.integer "pax"
+    t.integer "total_amount_cents"
+    t.boolean "active"
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +77,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_193912) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "customers", "tables"
+  add_foreign_key "dish_allergens", "allergens"
+  add_foreign_key "dish_allergens", "dishes"
+  add_foreign_key "dishes", "tables"
 end
