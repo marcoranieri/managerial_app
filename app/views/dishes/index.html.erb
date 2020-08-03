@@ -1,0 +1,19 @@
+<%= link_to "Back to TABLE", @table %>
+<h1>Dishes:</h1>
+
+<hr>
+
+<h4>Add Dish:</h4>
+<%= simple_form_for [@table, Dish.new] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price_cents %>
+  <%= f.submit %>
+<% end %>
+
+<ul>
+  <% @dishes.each do |dish| %>
+    <li>
+      <%= dish.name %> - £<%= dish.price_cents %>
+    </li>
+  <% end %>
+</ul>

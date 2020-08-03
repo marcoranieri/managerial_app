@@ -6,7 +6,6 @@ class CreateDishes < ActiveRecord::Migration[6.0]
       t.boolean :vegetarian
       t.boolean :gluten_free
       t.string :category
-      t.references :table, null: false, foreign_key: true
 
       t.timestamps
     end

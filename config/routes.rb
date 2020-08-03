@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :tables, only: [:index, :show] do
+    resources :orders, only: [:index, :create]
+    resources :customers, only: [:create]
+  end
+
+  resources :dishes, only: [:index, :create]
+
+  resources :kitchens, only: [:index]
+
+  root to: 'tables#index'
+  # root to: 'pages#home'
 end

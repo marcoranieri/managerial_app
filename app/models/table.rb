@@ -1,4 +1,5 @@
 class Table < ApplicationRecord
-  has_many :dishes
+  has_many :orders
   has_many :customers
+  has_many :dishes, through: :orders
 end

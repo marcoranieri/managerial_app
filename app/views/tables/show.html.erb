@@ -1,0 +1,34 @@
+<%= link_to "Tables", tables_path  %>
+<%= link_to "Kitchens", kitchens_path  %>
+<hr>
+
+<h1>Table <%= @table.table_number %></h1>
+
+<h3>
+  Total pax: <%= @table.pax %>
+</h3>
+
+<h3>
+  Total amount: £<%= @table.total_amount_cents %>
+</h3>
+
+<ul>
+  <% @table.dishes.each do |dish| %>
+    <li>
+      <%= dish.name %> - £<%= dish.price_cents %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>
+  Total pax: <%= @table.pax %>
+</h3>
+
+<hr>
+
+<h4>Add Dish:</h4>
+<%= simple_form_for [@table, Dish.new] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price_cents %>
+  <%= f.submit %>
+<% end %>

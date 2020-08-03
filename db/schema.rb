@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_200731) do
+ActiveRecord::Schema.define(version: 2020_08_03_155257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 2020_08_02_200731) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.boolean "vegetarian"
-    t.boolean "gluten_free"
-    t.boolean "child"
-    t.boolean "foreign"
+    t.boolean "vegetarian", default: false
+    t.boolean "gluten_free", default: false
+    t.boolean "child", default: false
+    t.boolean "foreign", default: false
     t.bigint "table_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -49,14 +49,22 @@ ActiveRecord::Schema.define(version: 2020_08_02_200731) do
     t.boolean "vegetarian"
     t.boolean "gluten_free"
     t.string "category"
-    t.bigint "table_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["table_id"], name: "index_dishes_on_table_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "table_id", null: false
+    t.bigint "dish_id", null: false
+    t.boolean "child", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dish_id"], name: "index_orders_on_dish_id"
+    t.index ["table_id"], name: "index_orders_on_table_id"
   end
 
   create_table "tables", force: :cascade do |t|
-    t.string "table_number"
+    t.integer "table_number"
     t.integer "pax"
     t.integer "total_amount_cents"
     t.boolean "active"
@@ -80,5 +88,6 @@ ActiveRecord::Schema.define(version: 2020_08_02_200731) do
   add_foreign_key "customers", "tables"
   add_foreign_key "dish_allergens", "allergens"
   add_foreign_key "dish_allergens", "dishes"
-  add_foreign_key "dishes", "tables"
+  add_foreign_key "orders", "dishes"
+  add_foreign_key "orders", "tables"
 end

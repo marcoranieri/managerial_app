@@ -1,0 +1,9 @@
+<h1>Kitchens</h1>
+
+<% @tables.each do |table| %>
+  <h3 style="border: 2px solid orange; padding:20px; width:200px">
+    <%= link_to table  do %>
+      Table <%= table.table_number %>
+    <% end %>
+  </h3>
+<% end %>
