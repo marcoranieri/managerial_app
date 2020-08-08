@@ -23,5 +23,4 @@ class DishesController < ApplicationController
   def dish_params
     params.require(:dish).permit(:name, :price_cents)
   end
-
 end

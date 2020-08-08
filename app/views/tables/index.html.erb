@@ -1,9 +1,31 @@
-<h1>Tables</h1>
+<h1><i class="far fa-edit"></i> Tables</h1>
 
 <% @tables.each do |table| %>
-  <h3 style="border: 2px solid orange; padding:20px; width:200px">
-    <%= link_to table  do %>
-      Table <%= table.table_number %>
-    <% end %>
-  </h3>
+  <div style="border: 2px solid orange; padding:40px 20px; width:200px;border-radius: 5px;">
+
+    <h3>
+      <% if table.pax.nil? %>
+        <%= link_to edit_table_path(table)  do %>
+          Table <%= table.table_number %>
+        <% end %>
+      <% else %>
+        <%= link_to table  do %>
+          Table <%= table.table_number %>
+        <% end %>
+      <% end %>
+    </h3>
+
+    <ul id="table-<%= table.id %>">
+      <% table.dishes.each do |dish| %>
+        <li>
+          <%= dish.name %>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
 <% end %>
+
+<hr>
+
+<%= link_to "ORDERS", kitchens_path, class: "btn btn-outline-primary" %>

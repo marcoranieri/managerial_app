@@ -1,9 +1,25 @@
-<h1>Kitchens</h1>
+<h1><i class="fas fa-utensils"></i> Kitchens</h1>
 
-<% @tables.each do |table| %>
-  <h3 style="border: 2px solid orange; padding:20px; width:200px">
-    <%= link_to table  do %>
-      Table <%= table.table_number %>
-    <% end %>
-  </h3>
-<% end %>
+<div style="display:flex;justify-content:space-between;">
+  <% @tables.each do |table| %>
+    <div style="border: 3px solid lightblue; padding:40px 20px; width:200px;border-radius: 5px;">
+      <div style="margin-top: -25px;" class="btn btn-outline-primary">
+        <%= link_to table  do %>
+          Table <%= table.table_number %>
+        <% end %>
+      </div>
+
+      <ul id="order-<%= table.id %>">
+        <% table.dishes.each do |dish| %>
+          <li>
+            <%= dish.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<hr>
+
+<%= link_to "TABLES", tables_path, class: "btn btn-outline-warning" %>

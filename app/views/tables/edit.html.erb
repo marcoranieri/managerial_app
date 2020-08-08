@@ -1,0 +1,18 @@
+<h2>EDIT TABLE <%= @table.table_number %></h2>
+
+<%= simple_form_for @table do |f| %>
+  <%= f.input :pax %>
+  <%= f.input :notes %>
+  <div class="text-right">
+    <%= f.submit "->" %>
+  </div>
+<% end %>
+
+<br><br>
+
+<div style="display:flex;justify-content:space-between;">
+  <div class="btn btn-outline-success">gluten</div>
+  <div class="btn btn-outline-success">dairy</div>
+  <div class="btn btn-outline-success">nuts</div>
+  <div class="btn btn-outline-success">vegetarian</div>
+</div>

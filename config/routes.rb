@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :tables, only: [:index, :show] do
+  resources :tables, only: [:index, :show, :edit,:update] do
     resources :orders, only: [:index, :create]
     resources :customers, only: [:create]
   end
