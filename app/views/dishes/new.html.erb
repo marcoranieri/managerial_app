@@ -1,0 +1,8 @@
+<h2>Create a new dish:</h2>
+
+<br><br>
+
+<%= simple_form_for @dish do |f| %>
+  <%= f.input :name %>
+  <%= f.submit "Submit", disable_with: 'Submiting...' %>
+<% end %>

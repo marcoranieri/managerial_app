@@ -4,6 +4,10 @@ class DishesController < ApplicationController
     @dishes = Dish.all
   end
 
+  def new
+    @dish = @Dish.new
+  end
+
   def create
     @dish = Dish.new(dish_params)
 
@@ -21,6 +25,6 @@ class DishesController < ApplicationController
   end
 
   def dish_params
-    params.require(:dish).permit(:name, :price_cents)
+    params.require(:dish).permit(:name, :price_cents, :priority, :category)
   end
 end
