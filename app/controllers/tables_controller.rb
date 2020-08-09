@@ -16,6 +16,20 @@ class TablesController < ApplicationController
     redirect_to table_path(@table)
   end
 
+  def decrement_pax
+    @table = Table.find(params[:table_id])
+    @table.update_attributes(pax: (@table.pax - 1))
+
+    redirect_to table_path(@table)
+  end
+
+  def increment_pax
+    @table = Table.find(params[:table_id])
+    @table.update_attributes(pax: @table.pax + 1)
+
+    redirect_to table_path(@table)
+  end
+
   private
 
   def table_params

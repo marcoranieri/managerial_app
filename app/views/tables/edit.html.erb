@@ -11,8 +11,10 @@
 <br><br>
 
 <div style="display:flex;justify-content:space-between;">
-  <div class="btn btn-outline-success">gluten</div>
-  <div class="btn btn-outline-success">dairy</div>
-  <div class="btn btn-outline-success">nuts</div>
-  <div class="btn btn-outline-success">vegetarian</div>
+  <% FoodOption.all.each do |option| %>
+    <label class="category-select">
+      <%= check_box_tag 'test', '1', false  %>
+      <%= option.name %>
+    </label>
+  <% end %>
 </div>

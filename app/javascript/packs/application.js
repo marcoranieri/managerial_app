@@ -27,8 +27,19 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { newOrder } from './new_order';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
-});
+
+  // Init ALL Bootstrap 4 POPOVERS
+  $(function () {
+    $('[data-toggle="popover"]').popover({
+      html : true,     // render html in popover body
+      trigger: 'focus' // click to close
+    })
+  })
+
+  // Create NEW ORDER in tables#show - AJAXify
+  newOrder();
+
+}); // -- turbolinks:load

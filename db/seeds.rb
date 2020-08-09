@@ -16,7 +16,7 @@ User.create email: "admin@admin.com", password: "123456"
 
 
 # TABLE
-Table.create table_number: 1, pax: rand(1..5)
+Table.create table_number: 1, pax: rand(1..5), notes: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe ex iusto animi aut, quaerat"
 Table.create table_number: 2 #, pax: rand(1..5)
 Table.create table_number: 3, pax: rand(1..5)
 puts "\n\nCreating Tables - tot: #{Table.count}\n"

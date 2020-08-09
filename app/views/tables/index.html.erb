@@ -4,7 +4,7 @@
   <div style="border: 2px solid orange; padding:40px 20px; width:200px;border-radius: 5px;">
 
     <h3>
-      <% if table.pax.nil? %>
+      <% if table.pax.zero? %>
         <%= link_to edit_table_path(table)  do %>
           Table <%= table.table_number %>
         <% end %>

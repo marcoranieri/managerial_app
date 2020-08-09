@@ -2,6 +2,7 @@
 
 <div style="display:flex;justify-content:space-between;">
   <% @tables.each do |table| %>
+
     <div style="border: 3px solid lightblue; padding:40px 20px; width:200px;border-radius: 5px;">
       <div style="margin-top: -25px;" class="btn btn-outline-primary">
         <%= link_to table  do %>
@@ -16,7 +17,15 @@
           </li>
         <% end %>
       </ul>
+
+
+      <% if table.notes.present? %>
+        <hr>
+        <p style="opacity: .6;"><small><%= table.notes %></small></p>
+      <% end %>
+
     </div>
+
   <% end %>
 </div>
 

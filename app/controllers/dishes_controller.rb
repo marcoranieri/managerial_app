@@ -1,4 +1,5 @@
 class DishesController < ApplicationController
+    before_action :set_dish, only: [:destroy]
 
   def index
     @dishes = Dish.all
