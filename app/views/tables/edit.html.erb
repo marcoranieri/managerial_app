@@ -10,11 +10,13 @@
 
 <br><br>
 
-<div style="display:flex;justify-content:space-between;">
-  <% FoodOption.all.each do |option| %>
+<div class="d-flex justify-content-between">
+
+  <% Customer.tag_counts.map(&:name).sort.each do |option| %>
     <label class="category-select">
       <%= check_box_tag 'test', '1', false  %>
-      <%= option.name %>
+      <%= option %>
     </label>
   <% end %>
+
 </div>
