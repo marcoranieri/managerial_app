@@ -30,6 +30,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 
+# gem 'acts-as-taggable-on', '~> 6.0'
+gem 'acts-as-taggable-on', :git => 'https://github.com/mbleigh/acts-as-taggable-on'
+
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'customers/index'
   devise_for :users
 
   resources :tables, only: [:index, :show, :edit,:update] do

@@ -2,7 +2,6 @@ class CreateDishes < ActiveRecord::Migration[6.0]
   def change
     create_table :dishes do |t|
       t.string :name,         null: false
-      t.integer :category,    null: false
       t.integer :priority,    default: 1
       t.integer :price_cents, default: 0
 
