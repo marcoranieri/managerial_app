@@ -15,23 +15,6 @@ ActiveRecord::Schema.define(version: 2020_08_09_152316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "allergens", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "notes"
-    t.string "raw_icon"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "customer_food_options", force: :cascade do |t|
-    t.bigint "customer_id", null: false
-    t.bigint "food_option_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_customer_food_options_on_customer_id"
-    t.index ["food_option_id"], name: "index_customer_food_options_on_food_option_id"
-  end
-
   create_table "customers", force: :cascade do |t|
     t.bigint "table_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -39,46 +22,11 @@ ActiveRecord::Schema.define(version: 2020_08_09_152316) do
     t.index ["table_id"], name: "index_customers_on_table_id"
   end
 
-  create_table "details", force: :cascade do |t|
-    t.boolean "vegetarian", default: false
-    t.boolean "vegan", default: false
-    t.boolean "child", default: false
-    t.boolean "foreign", default: false
-    t.bigint "customer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_details_on_customer_id"
-  end
-
-  create_table "dish_allergens", force: :cascade do |t|
-    t.bigint "dish_id", null: false
-    t.bigint "allergen_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["allergen_id"], name: "index_dish_allergens_on_allergen_id"
-    t.index ["dish_id"], name: "index_dish_allergens_on_dish_id"
-  end
-
-  create_table "dish_food_options", force: :cascade do |t|
-    t.bigint "dish_id", null: false
-    t.bigint "food_option_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["dish_id"], name: "index_dish_food_options_on_dish_id"
-    t.index ["food_option_id"], name: "index_dish_food_options_on_food_option_id"
-  end
-
   create_table "dishes", force: :cascade do |t|
     t.string "name", null: false
+    t.string "color", default: "#ffffc7"
     t.integer "priority", default: 1
     t.integer "price_cents", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "food_options", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -142,14 +90,7 @@ ActiveRecord::Schema.define(version: 2020_08_09_152316) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "customer_food_options", "customers"
-  add_foreign_key "customer_food_options", "food_options"
   add_foreign_key "customers", "tables"
-  add_foreign_key "details", "customers"
-  add_foreign_key "dish_allergens", "allergens"
-  add_foreign_key "dish_allergens", "dishes"
-  add_foreign_key "dish_food_options", "dishes"
-  add_foreign_key "dish_food_options", "food_options"
   add_foreign_key "orders", "dishes"
   add_foreign_key "orders", "tables"
   add_foreign_key "taggings", "tags"

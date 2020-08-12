@@ -1,7 +1,7 @@
 <ol>
   <% table.dishes.each do |dish| %>
     <li>
-      <%= dish.name %> - £<%= dish.price_cents/100 %>
+      <%= dish.name %> - £<%= dish.price_cents %>
     </li>
   <% end %>
 </ol>

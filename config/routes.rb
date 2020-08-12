@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create, :destroy]
     resources :customers, only: [:create]
 
+    post "create_order", to: "orders#create_order"
+    delete "delete_order", to: "orders#delete_order"
+
     patch "decrement_pax", to: "tables#decrement_pax"
     patch "increment_pax", to: "tables#increment_pax"
   end

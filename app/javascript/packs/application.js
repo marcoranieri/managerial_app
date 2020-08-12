@@ -15,9 +15,11 @@ import "bootstrap";
 
 // Internal imports
 import { newOrder } from './new_order';
+import { createOrderFetch } from './create_order_fetch';
 
 
 document.addEventListener('turbolinks:load', () => {
+
 
   // Init ALL Bootstrap 4 POPOVERS
   $(function () {
@@ -27,7 +29,9 @@ document.addEventListener('turbolinks:load', () => {
     })
   })
 
+
   // Create NEW ORDER in tables#show - AJAXify
-  newOrder();
+  // newOrder();
+  createOrderFetch();
 
 }); // -- turbolinks:load
