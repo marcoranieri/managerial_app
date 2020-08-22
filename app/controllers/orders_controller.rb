@@ -25,6 +25,12 @@ class OrdersController < ApplicationController
     order = Order.find(params[:id])
     order.destroy
 
+    ChatroomChannel.broadcast_to(
+      "general",
+      "delete #{params[:id]}"
+      # render_to_string(partial: "orders/order.html.erb", locals: { table: @table, order: order })
+    )
+
     redirect_to @table
   end
 
@@ -39,30 +45,20 @@ class OrdersController < ApplicationController
     order.dish = Dish.find(params["dish_id"].to_i)
 
     order.save
-    puts "\n\n\n\n\n"
-    puts "++++++++++++++"
-    puts "\n\n\n\n\n"
-    p order
-    puts "\n\n\n\n\n"
-    puts "++++++++++++++"
-    puts "\n\n\n\n\n"
 
-    render json: @table.orders, include: {dish: {only: :name}}
+    ChatroomChannel.broadcast_to(
+      "general",
+      # "Ciao da ActionCable"
+      render_to_string(partial: "orders/order.html.erb", locals: { table: @table, order: order })
+    )
+
+    render json: @table.orders, include: {dish: {only: [:id, :name, :color]}}
   end
 
   def delete_order
     puts "\n\n\n\n\n"
-    puts "++++++++++++++"
-    puts "\n\n\n\n\n"
     p params
     puts "\n\n\n\n\n"
-    puts "++++++++++++++"
-    puts "\n\n\n\n\n"
-    # order =
-
-    # order.destroy
-
-    # render json: @table.orders, include: {:dish => {:only => :name}}
   end
 
   private

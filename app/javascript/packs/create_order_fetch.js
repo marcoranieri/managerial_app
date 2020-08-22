@@ -1,18 +1,16 @@
 const createOrderFetch = () => {
 
-  const radioBtnDishes = document.querySelectorAll(".dish-name")
+  const btnDishes = document.querySelectorAll(".dish--js")
 
-  if (radioBtnDishes) {
+  if (btnDishes) {
 
-    radioBtnDishes.forEach(btn => {
+    btnDishes.forEach(btn => {
 
-      console.log(btn)
       btn.addEventListener("click", (event) => {
 
-        console.log(event)
-
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        const data = { dish_id: event.currentTarget.dataset.dishId}
+
+        const data = { dish_id: event.currentTarget.dataset.dishId, color: event.currentTarget.dataset.dishColor}
 
         fetch(window.location.pathname + "/create_order", {
           method: 'POST',
@@ -25,28 +23,31 @@ const createOrderFetch = () => {
         })
         .then(response => response.json())
         .then((mydata) => {
-          console.log(mydata);
-          console.log(mydata[0].table_id);
-          const tableId = mydata[0].table_id
-          const showTableOrder = document.querySelector(`ul#show-table-${tableId}`)
+
+          const showTableOrder = document.querySelector(`ul#show-table-${mydata[0].table_id}`)
+
           showTableOrder.innerHTML = ""
+
           mydata.forEach(data => {
-            console.log(data)
             const listItem = `
-              <li data-dish-id="${data.dish_id}" data-dish-name="${data.dish.name}">
+              <li data-dish-id="${data.dish.id}" data-dish-name="${data.dish.name}"
+                style="background-color:${data.dish.color}"
+                data-dish-id="${data.dish.id}"
+                data-dish-color="${data.dish.color}" >
                 <div class="d-flex justify-content-between">
                   <p>${data.dish.name}</p>
                   <p><a data-remote="true" rel="nofollow" data-method="delete" href="/tables/${data.table_id}/orders/${data.id}"><i class="far fa-trash-alt"></i></a></p>
                 </div>
               </li>
             `
+
             showTableOrder.innerHTML += listItem
           })
         });
 
-      }); // addEventListener
+      }); // btn.addEventListener("click"
 
-    }); // forEach
+    }); // mydata.forEach(data
 
   } // if (radioBtnDishes)
 

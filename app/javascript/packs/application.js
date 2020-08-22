@@ -14,8 +14,11 @@ import "bootstrap";
 
 
 // Internal imports
-import { newOrder } from './new_order';
 import { createOrderFetch } from './create_order_fetch';
+
+
+// WHY I NEED THIIIIS AAAARGH! Why channels is not importing my action cable
+import { initChatroomCable } from './../channels/chatroom_channel';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -31,7 +34,8 @@ document.addEventListener('turbolinks:load', () => {
 
 
   // Create NEW ORDER in tables#show - AJAXify
-  // newOrder();
   createOrderFetch();
+
+  initChatroomCable();
 
 }); // -- turbolinks:load

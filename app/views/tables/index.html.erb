@@ -1,30 +1,34 @@
 <h1><i class="far fa-edit"></i> Tables</h1>
 
-<% @tables.each do |table| %>
-  <div style="border: 2px solid orange; padding:40px 20px; width:200px;border-radius: 5px;">
+<div class="row">
+  <% @tables.each do |table| %>
 
-    <h3>
-      <% if table.pax.zero? %>
-        <%= link_to edit_table_path(table)  do %>
-          Table <%= table.table_number %>
+    <div class="col-4" style="border: 2px solid orange; padding:40px 20px; width:200px;border-radius: 5px;">
+
+      <h3>
+        <% if table.pax.zero? %>
+          <%= link_to edit_table_path(table)  do %>
+            Table <%= table.table_number %>
+          <% end %>
+        <% else %>
+          <%= link_to table  do %>
+            Table <%= table.table_number %>
+          <% end %>
         <% end %>
-      <% else %>
-        <%= link_to table  do %>
-          Table <%= table.table_number %>
+      </h3>
+
+      <ul id="table-<%= table.id %>">
+        <% table.dishes.each do |dish| %>
+          <li>
+            <%= dish.name %>
+          </li>
         <% end %>
-      <% end %>
-    </h3>
+      </ul>
 
-    <ul id="table-<%= table.id %>">
-      <% table.dishes.each do |dish| %>
-        <li>
-          <%= dish.name %>
-        </li>
-      <% end %>
-    </ul>
+    </div>
+  <% end %>
 
-  </div>
-<% end %>
+</div>
 
 <hr>
 

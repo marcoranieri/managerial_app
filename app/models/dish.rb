@@ -3,11 +3,11 @@ class Dish < ApplicationRecord
 
   has_many :orders
 
-  has_many :dish_allergens
-  has_many :allergens, through: :dish_allergens
+  # has_many :dish_allergens
+  # has_many :allergens, through: :dish_allergens
 
-  has_many :dish_food_options
-  has_many :food_options, through: :dish_food_options
+  # has_many :dish_food_options
+  # has_many :food_options, through: :dish_food_options
 
   acts_as_taggable_on :tags
   acts_as_taggable_on :allergens, :options
@@ -52,8 +52,157 @@ class Dish < ApplicationRecord
     default: "#ffffc7"
   }
 
+  DISHES = [
+    {
+      name: 'Cheese cake',
+      price: 600,
+      tag: 'antipasto',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Calamari',
+      price: 1000,
+      tag: 'antipasto',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Mortadella',
+      price: 600,
+      tag: 'antipasto',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: '(extra) Affettati misti',
+      price: 800,
+      tag: 'antipasto',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Maccheroni',
+      price: 1200,
+      tag: 'primo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'trofie',
+      price: 1000,
+      tag: 'primo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Risotto',
+      price: 1200,
+      tag: 'primo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'TagliatelleTar',
+      price: 1400,
+      tag: 'primo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Costine Maiale',
+      price: 1600,
+      tag: 'secondo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Cntrf Lardo',
+      price: 1800,
+      tag: 'secondo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Cntrf Balsam',
+      price: 1600,
+      tag: 'secondo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Cntrf Tartufo',
+      price: 2200,
+      tag: 'secondo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Polpo',
+      price: 1600,
+      tag: 'secondo',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Crema Bianca',
+      price: 600,
+      tag: 'dolce',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Tortino',
+      price: 600,
+      tag: 'dolce',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Semifreddo',
+      price: 600,
+      tag: 'dolce',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Acqua',
+      price: 200,
+      tag: 'bevande',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Vino quarto',
+      price: 400,
+      tag: 'vino',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Vino mezzo',
+      price: 800,
+      tag: 'vino',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Vino Bott.',
+      price: 1000,
+      tag: 'vino',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    },
+    {
+      name: 'Kafèèéé',
+      price: 200,
+      tag: 'bevande',
+      allergen: Dish::ALLERGEN_TAG.sample(3),
+      option: Dish::OPTION_TAG.sample(2)
+    }
+  ].freeze
 
-  scope :display_by_tags, -> { tagged_with("antipasto")}
+  # scope :display_by_tag, (tag) -> { tagged_with(tag)}
 
   # # override getter
   # def price
@@ -68,7 +217,6 @@ class Dish < ApplicationRecord
 
   def set_color
     self.color = COLORS[self.tag_list.first.to_sym] || COLORS[:default]
-    #Ex:- :default =>'']
   end
 
 

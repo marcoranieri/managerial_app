@@ -1,0 +1,17 @@
+<div data-dish-id="<%= order.dish.id %>"
+    data-dish-name="<%= order.dish.name%>"
+    data-dish-color="<%= order.dish.color %>"
+    data-table-it="<%= order.table.id %>"
+    style="background-color:<%= order.dish.color %>;">
+
+  <div class="d-flex justify-content-between">
+
+    <p><%= order.dish.name %></p>
+
+    <% if controller_name == "tables" %>
+    <p><%= link_to "<i class='far fa-trash-alt'></i>".html_safe, table_order_path(table, order), method: :delete, remote: true  %></p>
+    <% end %>
+
+  </div>
+</div>
+

@@ -28,24 +28,15 @@
 
     <h4>Add Dish to Order:</h4>
 
-    <% Dish.all.each do |dish| %>
-
-      <p class="dish-name" style="background-color:<%= dish.color %>;" data-dish-id="<%= dish.id %>">
-        <%= dish.name %>
-      </p>
-
-    <% end %>
+    <div class="row">
+      <%= render @dishes %>
+    </div>
 
   </div>
 
-  <ul id="show-table-<%= @table.id %>" class="col white-bg" style="padding:20px 40px;border: 2px solid lightblue">
+  <ul id="show-table-<%= @table.id %>" data-table-id="<%= @table.id %>" class="col white-bg list-orders" style="padding:20px 40px;border: 2px solid lightblue">
     <% @table.orders.each do |order| %>
-      <li data-dish-id="<%=order.dish.id%>" data-dish-name="<%=order.dish.name%>">
-        <div class="d-flex justify-content-between">
-          <p><%= order.dish.name %></p>
-          <p><%= link_to "<i class='far fa-trash-alt'></i>".html_safe, table_order_path(@table, order), method: :delete, remote: true  %></p>
-        </div>
-      </li>
+      <%= render partial: "orders/order.html.erb", locals: { table: @table, order: order } %>
     <% end %>
   </ul>
 </div>
