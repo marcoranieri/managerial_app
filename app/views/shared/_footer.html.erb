@@ -1,0 +1,26 @@
+<footer class="main-footer d-flex justify-content-between align-items-center">
+  <div class="footer-nav">
+
+  <% if controller_name == "tables" %>
+
+    <%= link_to tables_path, class: "btn btn-warning" do %>
+      <%= image_tag("dining-table") %>
+    <% end %>
+
+    <%= link_to kitchens_path, class: "btn btn-primary"  do %>
+      <%= image_tag "chef-bw", style: "width:4vh" %>
+    <% end %>
+
+  <% elsif controller_name == "kitchens" %>
+
+    <%= link_to tables_path, class: "btn btn-warning" do %>
+      <%= image_tag "dining-table-bw", style: "width:4vh" %>
+    <% end %>
+
+    <%= link_to kitchens_path, class: "btn btn-primary"  do %>
+      <%= image_tag("chef") %>
+    <% end %>
+
+  <% end %>
+  </div>
+</footer>

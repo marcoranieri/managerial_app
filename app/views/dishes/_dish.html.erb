@@ -1,8 +1,12 @@
-<div
-  class="dish--js col-6"
-  style="background-color:<%= dish.color %>;"
-  data-dish-id="<%= dish.id %>"
-  data-dish-color="<%= dish.color %>"
->
-  <%= dish.name %>
+<div class="col-6 col-md-4">
+
+  <div
+    class="dish--js order-item"
+    style="background-color:<%= dish.color %>;"
+    data-dish-id="<%= dish.id %>"
+    data-dish-color="<%= dish.color %>">
+
+    <%= dish.name %>
+  </div>
+
 </div>

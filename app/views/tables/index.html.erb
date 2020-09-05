@@ -1,35 +1,25 @@
-<h1><i class="far fa-edit"></i> Tables</h1>
-
 <div class="row">
   <% @tables.each do |table| %>
 
-    <div class="col-4" style="border: 2px solid orange; padding:40px 20px; width:200px;border-radius: 5px;">
+    <div class="col-sm-6 col-lg-4" style="border: 2px solid orange; padding:40px 20px;border-radius: 5px;">
 
       <h3>
         <% if table.pax.zero? %>
-          <%= link_to edit_table_path(table)  do %>
-            Table <%= table.table_number %>
-          <% end %>
+
+          <%= link_to "Table #{table.table_number}", edit_table_path(table) %>
+
         <% else %>
-          <%= link_to table  do %>
-            Table <%= table.table_number %>
-          <% end %>
+
+          <%= link_to "Table #{table.table_number}", table %>
+
         <% end %>
       </h3>
 
-      <ul id="table-<%= table.id %>">
-        <% table.dishes.each do |dish| %>
-          <li>
-            <%= dish.name %>
-          </li>
-        <% end %>
-      </ul>
+      <div id="table-<%= table.id %>" class="row">
+        <%= render table.dishes %>
+      </div>
 
     </div>
+
   <% end %>
-
 </div>
-
-<hr>
-
-<%= link_to "ORDERS", kitchens_path, class: "btn btn-outline-primary" %>

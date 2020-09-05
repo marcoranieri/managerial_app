@@ -1,9 +1,9 @@
-<h1><i class="fas fa-utensils"></i> Kitchens</h1>
-
-<div class="kitchen-index--js" style="display:flex;justify-content:space-between;">
+<div class="kitchen-index--js row">
   <% @tables.each do |table| %>
+  <div class="col-sm-6 col-lg-4">
 
-    <div class="kitchen--js" data-table-id="<%= table.id %>" style="border: 3px solid lightblue; padding:40px 20px; width:200px;border-radius: 5px;">
+    <div class="kitchen-card white-bg kitchen--js" data-table-id="<%= table.id %>">
+
       <div style="margin-top: -25px;" class="btn btn-outline-primary">
         <%= link_to table  do %>
           Table <%= table.table_number %>
@@ -14,7 +14,6 @@
         <%= render table.dishes %>
       </ul>
 
-
       <% if table.notes.present? %>
         <hr>
         <p style="opacity: .6;"><small><%= table.notes %></small></p>
@@ -22,9 +21,6 @@
 
     </div>
 
+  </div>
   <% end %>
 </div>
-
-<hr>
-
-<%= link_to "TABLES", tables_path, class: "btn btn-outline-warning" %>

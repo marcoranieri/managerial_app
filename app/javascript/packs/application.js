@@ -14,7 +14,7 @@ import "bootstrap";
 
 
 // Internal imports
-import { createOrderFetch } from './create_order_fetch';
+import { createOrderFetch } from './create_order';
 
 
 // WHY I NEED THIIIIS AAAARGH! Why channels is not importing my action cable

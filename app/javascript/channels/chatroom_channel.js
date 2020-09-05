@@ -2,7 +2,6 @@ import consumer from "./consumer";
 
 
 const deleteOrder = (data) => {
-  debugger
   const id    = parseInt(data.split(' ')[1], 10)
   const order = document.querySelector(`[data-dish-id='${id}']`)
 

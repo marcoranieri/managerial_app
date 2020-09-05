@@ -24,21 +24,27 @@ const createOrderFetch = () => {
         .then(response => response.json())
         .then((mydata) => {
 
-          const showTableOrder = document.querySelector(`ul#show-table-${mydata[0].table_id}`)
+          const showTableOrder = document.querySelector(`#show-table-${mydata[0].table_id}`)
 
           showTableOrder.innerHTML = ""
 
           mydata.forEach(data => {
             const listItem = `
-              <li data-dish-id="${data.dish.id}" data-dish-name="${data.dish.name}"
-                style="background-color:${data.dish.color}"
-                data-dish-id="${data.dish.id}"
-                data-dish-color="${data.dish.color}" >
+              <div data-dish-id="${data.dish.id}"
+                data-dish-name="${data.dish.name}"
+                data-dish-color="${data.dish.color}"
+                style="
+                  background-color:${data.dish.color};
+                  padding: 20px 0;
+                  margin: 5px auto;
+                  box-shadow: 0 2px 3px darkgray;
+                ">
+
                 <div class="d-flex justify-content-between">
                   <p>${data.dish.name}</p>
-                  <p><a data-remote="true" rel="nofollow" data-method="delete" href="/tables/${data.table_id}/orders/${data.id}"><i class="far fa-trash-alt"></i></a></p>
+                  <a class="delete-order-btn" data-remote="true" rel="nofollow" data-method="delete" href="/tables/${data.table_id}/orders/${data.id}"><i class="far fa-trash-alt"></i></a>
                 </div>
-              </li>
+              </div>
             `
 
             showTableOrder.innerHTML += listItem

@@ -1,32 +1,5 @@
-<div class="d-flex justify-content-between align-items-center">
-  <div>
-    <%= link_to "<i class='far fa-edit'></i>".html_safe, tables_path, class: "btn btn-warning"  %>
-    <%= link_to "<i class='fas fa-utensils'></i>".html_safe, kitchens_path, class: "btn btn-primary"  %>
-  </div>
-
-  <h1>Table <%= @table.table_number %></h1>
-</div>
-
-<hr>
-
-<div class="d-flex justify-content-between align-items-center">
-  <%= link_to "<i class='fas fa-pencil-alt'></i>".html_safe, edit_table_path(@table), class: "btn btn-outline-warning" %>
-
-  <a tabindex="0" class="btn btn-outline-success" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="Tot: £<%= @table.total_amount_cents.nil? ? 0 : @table.total_amount_cents %>" data-content="<%= render partial: "popover_content", locals: { table: @table } %>"><i class="fas fa-euro-sign"></i></a>
-
-  <h4>
-    <%= link_to "<i class='fas fa-minus'></i>".html_safe, table_decrement_pax_path(@table), method: :patch, remote: true %>
-    <i class="fas fa-users"></i> <%= @table.pax %>
-    <%= link_to "<i class='fas fa-plus'></i>".html_safe, table_increment_pax_path(@table), method: :patch, remote: true %>
-  </h4>
-</div>
-
-<hr>
-
-<div class="d-flex justify-content-around">
-  <div class="col">
-
-    <h4>Add Dish to Order:</h4>
+<div class="row">
+  <div class="col-8">
 
     <div class="row">
       <%= render @dishes %>
@@ -34,7 +7,7 @@
 
   </div>
 
-  <ul id="show-table-<%= @table.id %>" data-table-id="<%= @table.id %>" class="col white-bg list-orders" style="padding:20px 40px;border: 2px solid lightblue">
+  <div id="show-table-<%= @table.id %>" data-table-id="<%= @table.id %>" class="col-4 white-bg list-orders" style="padding:20px 40px;border: 2px solid lightblue">
     <% @table.orders.each do |order| %>
       <%= render partial: "orders/order.html.erb", locals: { table: @table, order: order } %>
     <% end %>
