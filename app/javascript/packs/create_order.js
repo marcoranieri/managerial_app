@@ -1,16 +1,21 @@
-const createOrderFetch = () => {
+const createOrder = () => {
 
   const btnDishes = document.querySelectorAll(".dish--js")
 
-  if (btnDishes) {
 
-    btnDishes.forEach(btn => {
+  if (btnDishes && document.querySelector(".active-list")) {
 
-      btn.addEventListener("click", (event) => {
+    btnDishes.forEach(dish => {
+
+      dish.addEventListener("click", (event) => {
 
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
-        const data = { dish_id: event.currentTarget.dataset.dishId, color: event.currentTarget.dataset.dishColor}
+        const data = {
+          dish_id: event.currentTarget.dataset.dishId,
+          color: event.currentTarget.dataset.dishColor,
+          priority: document.querySelector(".active-list").dataset.priority
+        }
 
         fetch(window.location.pathname + "/create_order", {
           method: 'POST',
@@ -24,40 +29,40 @@ const createOrderFetch = () => {
         .then(response => response.json())
         .then((mydata) => {
 
-          const showTableOrder = document.querySelector(`#show-table-${mydata[0].table_id}`)
+          // const activeList = document.querySelector(`#show-table-${mydata[0].table_id}`)
+          const activeList = document.querySelector(".active-list")
 
-          showTableOrder.innerHTML = ""
-
-          mydata.forEach(data => {
+          // activeList.innerHTML = ""
+          const last = mydata[mydata.length - 1]
+          // mydata.forEach(data => {
             const listItem = `
-              <div data-dish-id="${data.dish.id}"
-                data-dish-name="${data.dish.name}"
-                data-dish-color="${data.dish.color}"
+              <div data-dish-id="${last.dish.id}"
+                data-dish-name="${last.dish.name}"
+                data-dish-color="${last.dish.color}"
                 style="
-                  background-color:${data.dish.color};
-                  padding: 20px 0;
+                  background-color:${last.dish.color};
                   margin: 5px auto;
                   box-shadow: 0 2px 3px darkgray;
                 ">
 
-                <div class="d-flex justify-content-between">
-                  <p>${data.dish.name}</p>
-                  <a class="delete-order-btn" data-remote="true" rel="nofollow" data-method="delete" href="/tables/${data.table_id}/orders/${data.id}"><i class="far fa-trash-alt"></i></a>
+                <div class="d-flex justify-content-between order-item">
+                  <p>${last.dish.name}</p>
+                  <a class="delete-order-btn" data-remote="true" rel="nofollow" data-method="delete" href="/tables/${last.table_id}/orders/${last.id}"><i class="far fa-trash-alt"></i></a>
                 </div>
               </div>
             `
 
-            showTableOrder.innerHTML += listItem
-          })
+            activeList.innerHTML += listItem
+          // })
         });
 
       }); // btn.addEventListener("click"
 
-    }); // mydata.forEach(data
+    }); // btnDishes.forEach(dish =>
 
-  } // if (radioBtnDishes)
+  } // if (btnDishes && document.querySelector(".active-list"))
 
 
 }
 
-export {createOrderFetch}
+export { createOrder }

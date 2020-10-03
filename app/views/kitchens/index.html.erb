@@ -11,7 +11,32 @@
       </div>
 
       <ul id="table-<%= table.id %>" class="row">
-        <%= render table.dishes %>
+        <%#= render table.dishes %>
+
+          <div id="priority-1" class="col-12 kitchen-table-priority">
+        <% table.orders.where(priority: 1).each do |order| %>
+            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
+        <% end %>
+          </div>
+
+          <div id="priority-2" class="col-12 kitchen-table-priority">
+        <% table.orders.where(priority: 2).each do |order| %>
+            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
+        <% end %>
+          </div>
+
+          <div id="priority-3" class="col-12 kitchen-table-priority">
+        <% table.orders.where(priority: 3).each do |order| %>
+            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
+        <% end %>
+          </div>
+
+          <div id="priority-4" class="col-12 kitchen-table-priority">
+        <% table.orders.where(priority: 4).each do |order| %>
+            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
+        <% end %>
+          </div>
+
       </ul>
 
       <% if table.notes.present? %>

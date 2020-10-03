@@ -3,7 +3,6 @@ class CreateDishes < ActiveRecord::Migration[6.0]
     create_table :dishes do |t|
       t.string :name,         null: false
       t.string :color,        default: "#ffffc7"
-      t.integer :priority,    default: 1
       t.integer :price_cents, default: 0
 
       t.timestamps

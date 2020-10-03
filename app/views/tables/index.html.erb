@@ -6,7 +6,10 @@
       <div>
         <% if table.pax.zero? %>
 
-          <%= link_to "Table #{table.table_number}", edit_table_path(table) %>
+          <%= link_to edit_table_path(table), class: 'table-link' do %>
+            <%= table.table_number %>
+            <%= image_tag("dining-table") %>
+          <% end %>
 
         <% else %>
 
@@ -14,6 +17,7 @@
             <%= table.table_number %>
             <%= image_tag("dining-table") %>
           <% end %>
+
         <% end %>
       </div>
 

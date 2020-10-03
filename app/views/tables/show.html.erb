@@ -1,15 +1,42 @@
 <div class="row">
-  <div class="col-8">
 
+  <div class="col-8">
     <div class="row">
       <%= render @dishes %>
     </div>
-
   </div>
 
-  <div id="show-table-<%= @table.id %>" data-table-id="<%= @table.id %>" class="col-4 white-bg list-orders" style="padding:20px 40px;border: 2px solid lightblue">
-    <% @table.orders.each do |order| %>
-      <%= render partial: "orders/order.html.erb", locals: { table: @table, order: order } %>
-    <% end %>
+  <div class="col-4">
+    <div id="show-table-<%= @table.id %>"  class="col white-bg orders-list active-list" data-table-id="<%= @table.id %>" data-priority="1">
+      <% @table.orders.where(priority: 1).each do |order| %>
+        <%= render partial: "orders/order.html.erb", locals: { table: @table, order: order } %>
+      <% end %>
+
+      <button class="select-list-btn">X</button>
+    </div>
+
+    <div id="show-table-2-<%= @table.id %>"  class="col white-bg orders-list" data-table-id="<%= @table.id %>" data-priority="2">
+      <% @table.orders.where(priority: 2).each do |order| %>
+        <%= render partial: "orders/order.html.erb", locals: { table: @table, order: order } %>
+      <% end %>
+
+      <button class="select-list-btn">X</button>
+    </div>
+
+    <div id="show-table-3-<%= @table.id %>"  class="col white-bg orders-list" data-table-id="<%= @table.id %>" data-priority="3">
+      <% @table.orders.where(priority: 3).each do |order| %>
+        <%= render partial: "orders/order.html.erb", locals: { table: @table, order: order } %>
+      <% end %>
+
+      <button class="select-list-btn">X</button>
+    </div>
+
+    <div id="show-table-4-<%= @table.id %>"  class="col white-bg orders-list" data-table-id="<%= @table.id %>" data-priority="4">
+      <% @table.orders.where(priority: 4).each do |order| %>
+        <%= render partial: "orders/order.html.erb", locals: { table: @table, order: order } %>
+      <% end %>
+      <button class="select-list-btn">X</button>
+    </div>
   </div>
+
 </div>

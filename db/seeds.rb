@@ -43,7 +43,7 @@ puts "\n\nCreating Customers - tot: #{Customer.count}\n"
 
 
 # DISH
-Dish::DISHES.each do |dish|
+DISHES.each do |dish|
   a = Dish.new name: dish[:name].humanize, price_cents: dish[:price]
   a.tag_list      = dish[:tag]
   a.allergen_list = dish[:allergen]

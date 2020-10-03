@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2020_08_09_152316) do
   create_table "dishes", force: :cascade do |t|
     t.string "name", null: false
     t.string "color", default: "#ffffc7"
-    t.integer "priority", default: 1
     t.integer "price_cents", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -34,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_08_09_152316) do
   create_table "orders", force: :cascade do |t|
     t.bigint "table_id", null: false
     t.bigint "dish_id", null: false
+    t.integer "priority", default: 1
     t.boolean "child", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

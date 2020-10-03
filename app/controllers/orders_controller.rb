@@ -36,13 +36,14 @@ class OrdersController < ApplicationController
 
   def update_table_amount
     new_total = @table.dishes.pluck(:price_cents).reduce(:+)
-    @table.update_attributes(total_amount_cents: new_total)
+    @table.update(total_amount_cents: new_total)
   end
 
   def create_order
     order = Order.new
     order.table = @table
     order.dish = Dish.find(params["dish_id"].to_i)
+    order.priority = params["priority"].to_i
 
     order.save
 
@@ -64,7 +65,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:table_id, :dish_id)
+    params.require(:order).permit(:table_id, :dish_id, :priority)
   end
 
   def set_table

@@ -3,20 +3,23 @@ import consumer from "./consumer";
 
 const deleteOrder = (data) => {
   const id    = parseInt(data.split(' ')[1], 10)
-  const order = document.querySelector(`[data-dish-id='${id}']`)
+  const order = document.querySelector(`[data-order-id='${id}']`)
 
   if (order) order.remove()
 }
 
 const updateContainer = (ordersContainer, data) => ordersContainer.insertAdjacentHTML('beforeend', data)
 
-const updateKitchenIndex = (data) =>{
-  const tableIdRegExp = new RegExp('data-table-it=\".+\"')
-  const tableId       = parseInt(data.match(tableIdRegExp)[0].split("\"")[1])
+const updateKitchenIndex = (data) => {
+  const tableIdRegExp  = new RegExp('data-table-it=\".+\"')
+  const priorityRegExp = new RegExp('data-order-priority=\".+\"')
+  const tableId        = parseInt(data.match(tableIdRegExp)[0].split("\"")[1])
+  const orderPriority  = parseInt(data.match(priorityRegExp)[0].split("\"")[1])
 
-  const table  = document.querySelector(`#table-${tableId}`);
-  table.insertAdjacentHTML('beforeend', data);
-  // console.log(tableId)
+  // const table  = document.querySelector(`#table-${tableId}`);
+  const priority  = document.querySelector(`#table-${tableId} #priority-${orderPriority}`);
+
+  priority.insertAdjacentHTML('beforeend', data);
 }
 
 
@@ -27,7 +30,7 @@ const initChatroomCable = () => {
   const ordersContainer  = document.querySelector(".list-orders");
   const kitchenContainer = document.querySelector(".kitchen-index--js");
 
-  if (ordersContainer || kitchenContainer) {
+  if ( ordersContainer || kitchenContainer ) {
     // const id = ordersContainer.dataset.chatroomId;
 
     consumer.subscriptions.create({ channel: "ChatroomChannel" }, {
