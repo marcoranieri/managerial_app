@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def choose_pic
-    controller_name == "tables" ? 'dining-table' : 'chef'
+    controller_name == "tables" ? 'dining-table.svg' : 'chef.svg'
   end
 
   def build_title(id)

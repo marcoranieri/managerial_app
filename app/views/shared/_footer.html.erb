@@ -4,21 +4,21 @@
   <% if controller_name == "tables" %>
 
     <%= link_to tables_path, class: "btn btn-warning" do %>
-      <%= image_tag("dining-table") %>
+      <%= image_tag("dining-table.svg") %>
     <% end %>
 
     <%= link_to kitchens_path, class: "btn btn-primary"  do %>
-      <%= image_tag "chef-bw", style: "width:4vh" %>
+      <%= image_tag "chef-bw.svg", style: "width:4vh" %>
     <% end %>
 
   <% elsif controller_name == "kitchens" %>
 
     <%= link_to tables_path, class: "btn btn-warning" do %>
-      <%= image_tag "dining-table-bw", style: "width:4vh" %>
+      <%= image_tag "dining-table-bw.svg", style: "width:4vh" %>
     <% end %>
 
     <%= link_to kitchens_path, class: "btn btn-primary"  do %>
-      <%= image_tag("chef") %>
+      <%= image_tag("chef.svg") %>
     <% end %>
 
   <% end %>
