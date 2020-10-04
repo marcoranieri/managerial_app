@@ -4,7 +4,7 @@
     <div class="col-sm-6 col-lg-4" style="border: 2px solid orange; padding:40px 20px;border-radius: 5px;">
 
       <div>
-        <% if table.pax.zero? %>
+        <% if table&.pax.zero? %>
 
           <%= link_to edit_table_path(table), class: 'table-link' do %>
             <%= table.table_number %>
@@ -21,8 +21,8 @@
         <% end %>
       </div>
 
-      <div id="table-<%= table.id %>" class="row">
-        <%= render table.dishes %>
+      <div id="table-<%= table&.id %>" class="row">
+        <%= render table.dishes if table %>
       </div>
 
     </div>
