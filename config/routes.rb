@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   get 'customers/index'
   devise_for :users
 
+  # Sidekiq Web UI, only for admins.
+  require "sidekiq/web"
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   resources :tables, only: [:index, :show, :edit,:update] do
     resources :orders, only: [:index, :create, :destroy]
     resources :customers, only: [:create]
