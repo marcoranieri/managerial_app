@@ -17,29 +17,29 @@ puts "\n\nCreating Tables - tot: #{Table.count}\n"
 
 
 # CUSTOMER
-a = Customer.new(table: Table.first)
-a.tag_list = ["#{Customer::CUSTOMER_TAG.sample}", "#{Customer::CUSTOMER_TAG.sample}"]
-a.save
-a = Customer.new table: Table.first
-a.tag_list = Customer::CUSTOMER_TAG.sample
-a.save
-a = Customer.new table: Table.first
-a.tag_list = Customer::CUSTOMER_TAG.sample
-a.save
+# a = Customer.new(table: Table.first)
+# a.tag_list = ["#{Customer::CUSTOMER_TAG.sample}", "#{Customer::CUSTOMER_TAG.sample}"]
+# a.save
+# a = Customer.new table: Table.first
+# a.tag_list = Customer::CUSTOMER_TAG.sample
+# a.save
+# a = Customer.new table: Table.first
+# a.tag_list = Customer::CUSTOMER_TAG.sample
+# a.save
 
-a = Customer.new table: Table.last
-a.tag_list = ["#{Customer::CUSTOMER_TAG.sample}", "#{Customer::CUSTOMER_TAG.sample}"]
-a.save
-a = Customer.new table: Table.last
-a.tag_list = Customer::CUSTOMER_TAG.sample
-a.save
-a = Customer.new table: Table.last
-a.tag_list = Customer::CUSTOMER_TAG.sample
-a.save
-a = Customer.new table: Table.last
-a.tag_list = Customer::CUSTOMER_TAG.sample
-a.save
-puts "\n\nCreating Customers - tot: #{Customer.count}\n"
+# a = Customer.new table: Table.last
+# a.tag_list = ["#{Customer::CUSTOMER_TAG.sample}", "#{Customer::CUSTOMER_TAG.sample}"]
+# a.save
+# a = Customer.new table: Table.last
+# a.tag_list = Customer::CUSTOMER_TAG.sample
+# a.save
+# a = Customer.new table: Table.last
+# a.tag_list = Customer::CUSTOMER_TAG.sample
+# a.save
+# a = Customer.new table: Table.last
+# a.tag_list = Customer::CUSTOMER_TAG.sample
+# a.save
+# puts "\n\nCreating Customers - tot: #{Customer.count}\n"
 
 
 # DISH

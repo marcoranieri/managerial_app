@@ -6,7 +6,7 @@
     data-dish-id="<%= dish.id %>"
     data-dish-color="<%= dish.color %>">
 
-    <%= dish.name %>
+    <%= dish.name.humanize %> <%= "<p>#{dish.price_cents} €</p>".html_safe if controller_name == "dishes" %>
   </div>
 
 </div>

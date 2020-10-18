@@ -1,21 +1,22 @@
-<%= link_to "Back to TABLE", @table %>
-<h1>Dishes:</h1>
+<h1>Dishes</h1>
 
 <hr>
 
-<h4>Add Dish:</h4>
-<%= simple_form_for [@table, Dish.new] do |f| %>
+<%= simple_form_for @dish, validate: true  do |f| %>
+  <%= f.error_notification %>
+
   <%= f.input :name %>
   <%= f.input :price_cents %>
+
+  <div id="radio_buttons_tag">
+    <%= f.input :color, as: :radio_buttons, collection: CATEGORY_TAG %>
+  </div>
+
   <%= f.submit %>
 <% end %>
 
 <hr>
 
-<ul>
-  <% @dishes.each do |dish| %>
-    <li>
-      <%= dish.name %> - £<%= dish.price_cents %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <%= render @dishes %>
+</div>

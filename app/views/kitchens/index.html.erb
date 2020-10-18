@@ -1,4 +1,5 @@
 <div class="kitchen-index--js row">
+
   <% @tables.each do |table| %>
   <div class="col-sm-6 col-lg-4">
 
@@ -11,31 +12,14 @@
       </div>
 
       <ul id="table-<%= table.id %>" class="row">
-        <%#= render table.dishes %>
 
-          <div id="priority-1" class="col-12 kitchen-table-priority">
-        <% table.orders.where(priority: 1).each do |order| %>
-            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
-        <% end %>
+        <% [*1..4].each do |i| %>
+          <div id="priority-<%= i %>" class="col-12 kitchen-table-priority">
+            <% table.orders.where(priority: i).each do |order| %>
+                <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
+            <% end %>
           </div>
-
-          <div id="priority-2" class="col-12 kitchen-table-priority">
-        <% table.orders.where(priority: 2).each do |order| %>
-            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
         <% end %>
-          </div>
-
-          <div id="priority-3" class="col-12 kitchen-table-priority">
-        <% table.orders.where(priority: 3).each do |order| %>
-            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
-        <% end %>
-          </div>
-
-          <div id="priority-4" class="col-12 kitchen-table-priority">
-        <% table.orders.where(priority: 4).each do |order| %>
-            <%= render partial: "orders/order.html.erb", locals: { table: table, order: order } %>
-        <% end %>
-          </div>
 
       </ul>
 
@@ -48,4 +32,5 @@
 
   </div>
   <% end %>
+
 </div>

@@ -26,6 +26,11 @@ class TablesController < ApplicationController
     ].flatten
   end
 
+  def new
+    raise
+  end
+
+
   def edit;end
 
   def update

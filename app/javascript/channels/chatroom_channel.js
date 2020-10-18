@@ -16,10 +16,9 @@ const updateKitchenIndex = (data) => {
   const tableId        = parseInt(data.match(tableIdRegExp)[0].split("\"")[1])
   const orderPriority  = parseInt(data.match(priorityRegExp)[0].split("\"")[1])
 
-  // const table  = document.querySelector(`#table-${tableId}`);
-  const priority  = document.querySelector(`#table-${tableId} #priority-${orderPriority}`);
-
-  priority.insertAdjacentHTML('beforeend', data);
+  document
+    .querySelector(`#table-${tableId} #priority-${orderPriority}`)
+    .insertAdjacentHTML('beforeend', data);
 }
 
 
@@ -31,13 +30,13 @@ const initChatroomCable = () => {
   const kitchenContainer = document.querySelector(".kitchen-index--js");
 
   if ( ordersContainer || kitchenContainer ) {
-    // const id = ordersContainer.dataset.chatroomId;
 
     consumer.subscriptions.create({ channel: "ChatroomChannel" }, {
 
+      // Broadcasted data to the Channel
       received(data) {
 
-        console.log(data); // called when data is broadcast in the cable
+        console.log(data);
 
         if (deleteRegExp.test(data)) {
 

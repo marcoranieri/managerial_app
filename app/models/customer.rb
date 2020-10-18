@@ -15,5 +15,5 @@ class Customer < ApplicationRecord
     child
   )
 
-  scope :tag_names, -> { tag_counts.map(&:name)}
+  scope :tag_names, -> { tag_counts.map(&:name) }
 end
