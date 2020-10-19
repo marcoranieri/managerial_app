@@ -38,6 +38,14 @@ class DishesController < ApplicationController
     @dolci     = Dish.tagged_with("dolce")
     @bevande   = Dish.tagged_with("bevande")
 
+    @dishes_count = {
+      antipasti: @antipasti.count,
+      primi: @primi.count,
+      secondi: @secondi.count,
+      contorni: @contorni.count,
+      dolci: @dolci.count,
+      bevande: @bevande.count
+    }
 
     @dishes = [
       @antipasti,

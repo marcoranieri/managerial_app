@@ -9,13 +9,22 @@
   <%= f.input :price_cents %>
 
   <div id="radio_buttons_tag">
-    <%= f.input :color, as: :radio_buttons, collection: CATEGORY_TAG %>
+    <%= f.input :color, as: :radio_buttons, label: "", collection: CATEGORY_TAG %>
   </div>
 
   <%= f.submit %>
 <% end %>
 
 <hr>
+
+<ul>
+  <% @dishes_count.each do |category, count| %>
+    <li>
+      <%= count %>
+      <%= category.to_s.humanize %>
+    </li>
+  <% end %>
+</ul>
 
 <div class="row">
   <%= render @dishes %>
